@@ -1,4 +1,4 @@
-  <%
+  <%-- <%
 
 	//Initialize--------------------------------------------
 	session.setAttribute("statusMsg", "");
@@ -42,18 +42,19 @@
 		String stsMsg = Obj.deleteResearcher(request.getParameter("hididDelete"));
 		session.setAttribute("statusMsg", stsMsg);
 	}
-%>  
+%> --%>  
 
 
 
 
 
 
-
+ <%@page import="com.Researcher" %>
+ 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
- <%@page import="com.Researcher" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,23 +73,27 @@
 			<div class="col-8">
 				<h1>Researcher Details</h1>
 				
-				<form id="formResearcher" name="formResearcher" method="post"
-					action="Researchers.jsp">
+				<form id="formResearcher" name="formResearcher">
 
 					First Name: <input id="firstname" name="firstname" type="text"
 						class="form-control form-control-sm">
+						
 					 <br> Last Name:
 						<input id="lastname" name="lastname" type="text"
 						class="form-control form-control-sm">
+						
 					<br> Gender: 
 						 <input id="gender" name="gender" type="text"
 						class="form-control form-control-sm"> 
+						
 					<br> Email:
 					 	<input id="email" name="email" type="text"
 						class="form-control form-control-sm">
+						
 					 <br> Password:
 						<input id="password" name="password" type="text"
 						class="form-control form-control-sm">
+						
 						 <br> 
 						 <input id="btnSave" name="btnSave" type="button" value="Save"
 						class="btn btn-primary">
@@ -98,19 +103,16 @@
 
 				</form>
 
-				<div id="alertSuccess" class="alert alert-success">
-					<%
-						out.print(session.getAttribute("statusMsg"));
-					%>
-				</div>
-
+				<div id="alertSuccess" class="alert alert-success"></div>
 				<div id="alertError" class="alert alert-danger"></div>
 
 				<br>
+				<div id="divResearcherGrid">
 			 	  <%
 					Researcher Obj = new Researcher();
 					out.print(Obj.readResearcher());
-				%>   
+				%> 
+				</div>  
 			</div>
 		</div>
 

@@ -55,11 +55,14 @@ public class Researcher {
 	
 	        preparedStmt.execute();
 	        con.close();
-	        output = "Inserted successfully";
+	        
+	        String newResearcher = readResearcher(); 
+	        output = "{\"status\":\"success\", \"data\": \"" + newResearcher + "\"}"; 
+	        
 	
 		}catch (Exception e){
 	 
-			output = "Error while inserting ";
+			output = "{\"status\":\"error\", \"data\":  \"Error while inserting the Researcher details.\"}";
 	        System.err.println(e.getMessage());
 	 
 		}
@@ -110,10 +113,10 @@ public class Researcher {
 	            output += "<td>" + password + "</td>";
 	
 	            // buttons
-	           output +="<td><input name='btnUpdate' type='button' value='Update' class=' btnUpdate btn btn-secondary'></td>"
-	        			 + "<td><form method='post' action='Researchers.jsp'>"
-	        			 +"<input name='btnRemove' type='submit' value='Remove' class='btn btn-danger'>"
-	        			 + "<input name='hididDelete' type='hidden' value='" + id + "'></form></td></tr>";
+	           output +="<td><input name='btnUpdate' type='button' value='Update' class=' btnUpdate btn btn-secondary' data-id='" + id + "'></td>"
+	        			 //+ "<td><form method='post' action='Researchers.jsp'>"
+	        			 + "<td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-id='" + id + "'></td></tr>";
+	        			// + "<input name='hididDelete' type='hidden' value='" + id + "'></form></td></tr>";
 	  
 	        }
 	 
@@ -159,11 +162,13 @@ public class Researcher {
 	        // execute the statement
 	        preparedStmt.execute();
 	        con.close();
-	        output = "Updated successfully";
-	 
+	        
+	        String newResearcher = readResearcher(); 
+	        output = "{\"status\":\"success\", \"data\": \"" + newResearcher + "\"}"; 
+	       
 		}catch (Exception e){
 	 
-			output = "Error while updating.";
+			output = "{\"status\":\"error\", \"data\":  \"Error while updating the researcher details.\"}";
 	        System.err.println(e.getMessage());
 	 
 		}
@@ -193,12 +198,14 @@ public class Researcher {
 	         // execute the statement
 	         preparedStmt.execute();
 	         con.close();
-	         output = "Deleted successfully";
+	         
+	         String newResearcher = readResearcher(); 
+	         output = "{\"status\":\"success\", \"data\": \"" + newResearcher + "\"}"; 
 	
 		}catch (Exception e){
 			
 	 
-			output = "Error while deleting";
+			output = "{\"status\":\"error\", \"data\":  \"Error while deleting the researcher details.\"}"; 
 	        System.err.println(e.getMessage());
 	
 		}
